@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VJIT AI Admission Agent | Presentation</title>
+    <title>VJIT AI Admission Agent | Session</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
     <style>
         :root { --accent: #00d4ff; --success: #00ff88; --warning: #ffcc00; --danger: #ff4444; }
         .reveal h1, .reveal h2, .reveal h3 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
-        .reveal p { font-size: 0.8em; color: #ccc; }
+        .reveal p, .reveal li { font-size: 0.8em; color: #ccc; text-align: left; }
+        .reveal ul { display: inline-block; text-align: left; }
         
-        /* Diagram Components */
+        .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .concept-card { border: 1px solid #444; padding: 15px; border-radius: 10px; background: #111; }
+        .concept-card h4 { color: var(--accent); font-size: 0.7em; margin-bottom: 5px; text-transform: uppercase; }
+        .concept-card p { font-size: 0.5em; margin: 0; line-height: 1.4; }
+
         .diagram-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 30px; }
-        .box { border: 2px solid var(--accent); padding: 15px; border-radius: 8px; background: rgba(0, 212, 255, 0.1); min-width: 140px; text-align: center; font-size: 0.7em; }
+        .box { border: 2px solid var(--accent); padding: 15px; border-radius: 8px; background: rgba(0, 212, 255, 0.1); min-width: 140px; text-align: center; font-size: 0.6em; }
         .arrow { font-size: 1.5em; color: var(--accent); font-weight: bold; }
-        .decision-diamond { border: 2px solid var(--warning); transform: rotate(45deg); width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: rgba(255, 204, 0, 0.1); margin: 20px; }
-        .decision-diamond span { transform: rotate(-45deg); font-size: 0.5em; font-weight: bold; line-height: 1.2; color: #fff; }
-        
-        .story-actor { border-radius: 50%; width: 70px; height: 70px; background: #222; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; border: 2px solid var(--accent); font-size: 1.5em; }
-        .highlight { color: var(--accent); font-weight: bold; }
-        
-        .log-table { font-size: 0.5em; border-collapse: collapse; width: 90%; margin: 0 auto; }
-        .log-table td, .log-table th { border: 1px solid #444; padding: 12px; text-align: left; }
-        .log-table th { background: #222; color: var(--accent); }
     </style>
 </head>
 <body>
@@ -33,141 +29,88 @@
             <section data-background-gradient="linear-gradient(to bottom, #111, #050505)">
                 <h1>VJIT AI Agent</h1>
                 <p>Autonomous Admission Intelligence</p>
-                <div style="margin-top: 100px; font-size: 0.5em; border-top: 1px solid #333; pt: 20px;">
-                    Python • Gemini 1.5 Flash • RAG Workflow • Streamlit
+                <div style="margin-top: 80px; font-size: 0.5em; opacity: 0.6;">Technical Show & Tell Session</div>
+            </section>
+
+            <section>
+                <h3>Topic Scope & Session Goals</h3>
+                <ul>
+                    <li>Mastering the <b>Mental Model</b> of Agentic AI.</li>
+                    <li>The Evolution: From Basic GenAI to <b>Autonomous Agents</b>.</li>
+                    <li>Building blocks of <b>Tool-Augmented</b> systems.</li>
+                    <li>Real-world Application: VJIT Admission Agent.</li>
+                    <li><b>Live Implementation</b> and Architecture Review.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Core Concepts</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h4>Generative AI</h4>
+                        <p>Foundation models trained on global data (e.g., Gemini, GPT).</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>RAG (Retrieval)</h4>
+                        <p>Providing custom "Context" to prevent AI hallucinations.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Prompt Engineering</h4>
+                        <p>The art of defining "System Instructions" for behavior control.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Agentic Workflows</h4>
+                        <p>AI that can use <b>Tools</b> (API, Email, WhatsApp) autonomously.</p>
+                    </div>
                 </div>
             </section>
 
             <section>
-                <h3>The Student Journey</h3>
-                <div class="diagram-container">
-                    <div>
-                        <div class="story-actor">🎓</div>
-                        <p style="font-size: 0.4em;">Student asks about<br><span class="highlight">Scholarships</span></p>
-                    </div>
-                    <div class="arrow">➔</div>
-                    <div class="box">Agent Scans<br>VJIT Brochure</div>
-                    <div class="arrow">➔</div>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <div class="box" style="border-color: var(--success);">Found: Drafts Gmail</div>
-                        <div class="box" style="border-color: var(--warning);">Missing: WhatsApp Staff</div>
-                    </div>
-                </div>
-                <p style="margin-top: 40px; font-style: italic;">Bridging the gap between static documents and instant answers.</p>
-            </section>
-
-            <section>
-                <h3>RAG Architecture</h3>
+                <h3>How Agents Work</h3>
+                <p style="text-align: center; font-style: italic;">The "Plan-Act-Check" Loop</p>
                 
                 <div class="diagram-container">
-                    <div class="box">Google Drive<br>(Cloud PDF)</div>
+                    <div class="box"><b>Input</b><br>User Query</div>
                     <div class="arrow">➔</div>
-                    <div class="box">PyPDF<br>(Extraction)</div>
+                    <div class="box" style="background: var(--accent); color:black;"><b>Reasoning</b><br>Gemini Brain</div>
                     <div class="arrow">➔</div>
-                    <div class="box" style="background: var(--accent); color: #000;">Gemini 1.5<br>(Analysis)</div>
-                    <div class="arrow">➔</div>
-                    <div class="box">Response<br>Routing</div>
+                    <div class="box" style="border-color: var(--success);"><b>Action</b><br>Tool Execution</div>
                 </div>
-                <p style="font-size: 0.6em; margin-top: 20px;">Retrieval-Augmented Generation ensures 0% Hallucinations.</p>
             </section>
 
             <section>
-                <h3>The Decision Engine</h3>
+                <h3>The VJIT Use Case</h3>
                 <div class="diagram-container">
-                    <div class="box">Student Query</div>
+                    <div class="box">Student asks about Placements</div>
                     <div class="arrow">➔</div>
-                    <div class="decision-diamond"><span>Confidence<br>> 0.80</span></div>
-                    <div style="display: flex; flex-direction: column; gap: 15px;">
-                        <div class="box" style="border-color: var(--success);">GMAIL API<br>(Automated Draft)</div>
-                        <div class="box" style="border-color: var(--danger);">TWILIO API<br>(Staff Alert)</div>
-                    </div>
+                    <div class="box">Agent Scans Brochure</div>
+                    <div class="arrow">➔</div>
+                    <div class="box" style="border-color: var(--success);">Drafts Email / Alerts Staff</div>
                 </div>
-                <p style="font-size: 0.6em; margin-top: 20px;">The Agent decides the communication channel based on data certainty.</p>
             </section>
 
             <section>
-                <h3>The Confidence Score</h3>
+                <h3>The Decision Gate</h3>
                 <div class="diagram-container">
-                    <div style="text-align: center;">
-                        <p style="font-size: 0.4em;">Brochure Data</p>
-                        <div class="box" style="border-style: dashed;">"Fee: 1.2L"</div>
-                    </div>
-                    <div class="arrow">+</div>
-                    <div style="text-align: center;">
-                        <p style="font-size: 0.4em;">Query</p>
-                        <div class="box" style="border-style: dashed;">"What is fee?"</div>
-                    </div>
-                    <div class="arrow">=</div>
-                    <div style="text-align: center;">
-                        <p style="font-size: 0.4em;">Certainty</p>
-                        <div class="box" style="background: var(--success); color: black;">0.98 (High)</div>
+                    <div class="box">Query</div>
+                    <div class="arrow">➔</div>
+                    <div style="border: 2px solid var(--warning); padding: 20px; border-radius: 50%;">Score?</div>
+                    <div class="arrow">➔</div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="box" style="border-color: var(--success);">Score > 0.8: Automate</div>
+                        <div class="box" style="border-color: var(--danger);">Score < 0.8: Escalate</div>
                     </div>
                 </div>
-                <p style="font-size: 0.5em; margin-top: 30px; color: #888;">Score calculation prevents AI from "guessing" outside its knowledge base.</p>
             </section>
 
-            <section>
-                <h3>Live Admin Audit</h3>
-                <table class="log-table">
-                    <thead>
-                        <tr>
-                            <th>Query</th>
-                            <th>Confidence</th>
-                            <th>Reasoning</th>
-                            <th>Outcome</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>"Placement Stats?"</td>
-                            <td>0.95</td>
-                            <td>Direct match in PDF</td>
-                            <td style="color: var(--success);">Gmail Drafted</td>
-                        </tr>
-                        <tr>
-                            <td>"Hostel Food?"</td>
-                            <td>0.30</td>
-                            <td>No data in brochure</td>
-                            <td style="color: var(--warning);">WhatsApp Alert</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="font-size: 0.5em; margin-top: 20px;">Every decision is logged, analyzed, and auditable.</p>
-            </section>
-
-            <section>
-                <h3>Tech Stack & Scaling</h3>
-                <div style="display: flex; gap: 40px; text-align: left;">
-                    <div style="flex: 1;">
-                        <h4 style="font-size: 0.7em;">Current Stack</h4>
-                        <ul style="font-size: 0.5em;">
-                            <li>Google Cloud (Drive/Gmail)</li>
-                            <li>Twilio Messaging</li>
-                            <li>Python-DotEnv Security</li>
-                        </ul>
-                    </div>
-                    <div style="flex: 1;">
-                        <h4 style="font-size: 0.7em;">Future Roadmap</h4>
-                        <ul style="font-size: 0.5em;">
-                            <li>Vector DB (ChromaDB)</li>
-                            <li>Multi-lingual Support</li>
-                            <li>Voice AI Integration</li>
-                        </ul>
-                    </div>
-                </div>
+            <section data-background-color="#00d4ff">
+                <h1 style="color: black;">LIVE DEMO</h1>
+                <p style="color: black; text-align: center;">Witnessing the Agent in Action</p>
             </section>
 
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
-    <script>
-        Reveal.initialize({
-            hash: true,
-            center: true,
-            transition: 'convex', // Options: none/fade/slide/convex/concave/zoom
-            backgroundTransition: 'fade'
-        });
-    </script>
+    <script>Reveal.initialize({ hash: true, center: true, transition: 'slide' });</script>
 </body>
 </html>
