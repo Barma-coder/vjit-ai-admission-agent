@@ -1,11 +1,19 @@
+# UI Framework
+streamlit
+
+# Data Handling (Required for Streamlit tables and logs)
+pandas
+
+# PDF & Image Processing (Upgraded for better compatibility)
+pypdf
+pdf2image
+pillow
+
 # Google AI & Services
 google-genai
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
-
-# PDF Processing
-PyPDF2
 
 # Communication Tools
 twilio
